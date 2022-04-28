@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../screens/filters_screen.dart';
 
 class MainDrawer extends StatelessWidget {
-  Widget buildListTile(String title, IconData icon, VoidCallback tapHandler) {
+  Widget buildListTile(String title, IconData icon, Function tapHandler) {
     return ListTile(
       leading: Icon(
         icon,
@@ -30,7 +31,7 @@ class MainDrawer extends StatelessWidget {
             width: double.infinity,
             padding: EdgeInsets.all(20),
             alignment: Alignment.centerLeft,
-            color: Theme.of(context).colorScheme.secondary,
+            color: Theme.of(context).accentColor,
             child: Text(
               'Cooking Up!',
               style: TextStyle(
@@ -42,20 +43,12 @@ class MainDrawer extends StatelessWidget {
           SizedBox(
             height: 20,
           ),
-          buildListTile(
-            'Meals',
-            Icons.restaurant,
-            (){
-              Navigator.of(context).pushReplacementNamed('/');
-            }
-          ),
-          buildListTile(
-            'Filters',
-            Icons.settings,
-            (){
-              Navigator.of(context).pushReplacementNamed(FilterScreen.routeName); //viene utilizzato per togliere la possibilita' di tornare indietro ad un utente
-            }
-          ),
+          buildListTile('Meals', Icons.restaurant, () {
+            Navigator.of(context).pushReplacementNamed('/');
+          }),
+          buildListTile('Filters', Icons.settings, () {
+            Navigator.of(context).pushReplacementNamed(FiltersScreen.routeName);
+          }),
         ],
       ),
     );
